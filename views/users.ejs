@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 p-5">
+            <h1 class="text-center pb-3">New Administrative User</h1>
+
+            <% if (typeof errors != 'undefined') { %>
+             <% errors.forEach(error => { %>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  <p><%- error.msg %> </p>
+              </div>
+             <% }) %>
+            <% } %>
+            <form action="/users" autocomplete="off" method="POST">
+                <div class="form-group">
+                    <label for="firstname">Firstname</label>
+                    <input type="text" name="firstname" id="firstname" class="form-control"
+                        placeholder="Firstname">
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Lastname</label>
+                    <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Lastname"
+                       >
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Email address">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="form-control"
+                        placeholder="Enter password..." aria-describedby="">
+                    <small id="" class="text-muted"></small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Confirm Password</label>
+                    <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm Password"
+                       >
+                </div>
+                <button type="submit" class="btn btn-outline-success btn-block mb-3">Save User</button>
+            </form>
+            
+        </div>
+
+
+    </div>
+</div>

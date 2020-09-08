@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4">Topics</h1>
+        </div>
+        <div class="col-md-4">
+            <form id="add-topic-form">
+                <div class="form-group">
+                    <label for="title">Topic Title</label>
+                    <input type="text" name="title" required id="title" class="form-control" placeholder="Topic title..."
+                        aria-describedby="">
+                </div>
+                <div class="form-group" id="add-topic-form" >
+                    <label for="description">Description</label>
+                    <textarea name="description" required id="description" cols="30" rows="5" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <button id="addTopic"  class="form-control btn btn-secondary">Add Topic</button>
+                </div>
+            </form>
+        </div>
+    
+        <div class="col-md-8 p-md-3">
+            <table class="table" id="topicsTable">
+                <thead>
+                    <th>Topic</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </thead>
+    
+                <tbody>
+                  
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

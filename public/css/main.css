@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Lora', serif;
+}
+
+.hero{
+    height: 91vh !important;
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/images/smart-start-bg.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+

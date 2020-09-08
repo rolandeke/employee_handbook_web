@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-7 offset-md-3 p-5">
+            <h3 class="display-4 text-center">Login to continue</h3>
+            <%- include('partials/messages') %> 
+            <form action="/login" autocomplete="off" method="POST" class="form mt-4">
+                <div class="form-group">
+                  <label for="email">Username</label>
+                  <input type="text" name="email" id="email" class="form-control" placeholder="Enter username or email.." value="<%- typeof email != 'undefined' ? email :"" %>">
+                
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" name="password" id="password" class="form-control" placeholder="Enter password...">
+                  <small id="" class="text-muted"></small>
+                </div>
+                <button type="submit" class="btn btn-info btn-block mb-3">Login</button>
+            </form>
+            <a href="/reset" class="link">Forgot Password?</a>
+        </div>
+    </div>
+</div>

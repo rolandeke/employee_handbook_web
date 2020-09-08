@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-5 offset-md-4 p-5">
+            <h5 class="display-4 text-center mb-2">Password Recovery</h5>
+            <%- include('partials/messages') %>
+            <form action="/reset" autocomplete="off" method="POST">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control"
+                        placeholder="Enter email address" value="<%- typeof email != 'undefined' ? email :"" %>">
+
+                </div>
+                <button type="submit" class="btn btn-warning btn-block mb-3">Reset Password</button>
+            </form>
+            <small>A recovery email would be sent to you to reset your password,please check and reset your password</small>
+            <p class="mt-2">Back to <a href="/login" class="link">Login</a> </p>
+        </div>
+    </div>
+</div>
