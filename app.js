@@ -5,13 +5,18 @@ const bodyParser = require("body-parser");
 const adminRoute = require("./routes/admin/adminRoute");
 const helmet = require('helmet')
 const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require("express-flash");
 const passport = require("passport");
 
 
 const app = express();
 app.use(helmet())
-
+const store = new MongoDBStore({
+  uri: process.env.DATABASE_URI,
+  collection: "sessions",
+});
+ 
 //Pasport 
 require("./auth/passport")(passport);
 //PATH TO STATIC FOLDERS
@@ -22,6 +27,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
+    store: store,
   })
 );
 app.use(passport.initialize());

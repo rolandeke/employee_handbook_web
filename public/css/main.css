@@ -17,3 +17,20 @@ body{
     
 }
 
+.dash-card{
+    width: 90%;
+    box-shadow: 5px 5px 10px #999;
+    background-color: rgb(39, 165, 182);
+}
+
+.dash-card a{
+    text-decoration: none;
+    color: #ffff;
+    font-weight: 700;
+}
+
+.dash-card i{
+    font-size: 60px;
+    margin-top: 10px;
+}
+
