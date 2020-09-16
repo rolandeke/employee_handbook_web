@@ -1,53 +1,101 @@
 <div class="container">
     <div class="row mt-5">
-        <div class="col-md-6 p-5">
-            <h1 class="text-center pb-3">New Administrative User</h1>
+        <div class="col-md-5 p-3">
+            <h3 class="text-center pb-3">New Administrative User</h3>
 
-            <% if (typeof errors != 'undefined') { %>
-             <% errors.forEach(error => { %>
-              <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                  <p><%- error.msg %> </p>
-              </div>
-             <% }) %>
-            <% } %>
+           <%- include('partials/messages') %> 
             <form action="/users" autocomplete="off" method="POST">
-                <div class="form-group">
-                    <label for="firstname">Firstname</label>
-                    <input type="text" name="firstname" id="firstname" class="form-control"
-                        placeholder="Firstname">
+                <!-- First row -->
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="firstname">Firstname</label>
+                            <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Firstname">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="lastname">Lastname</label>
+                            <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Lastname">
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="lastname">Lastname</label>
-                    <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Lastname"
-                       >
-                </div>
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username" class="form-control" placeholder="Username">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Email address">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" class="form-control"
-                        placeholder="Enter password..." aria-describedby="">
-                    <small id="" class="text-muted"></small>
-                </div>
-                <div class="form-group">
-                    <label for="password">Confirm Password</label>
-                    <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm Password"
-                       >
-                </div>
+               <!-- end of first row -->
+              
+               <!-- second row -->
+               <div class="form-row">
+                   <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Email address">
+                    </div>
+                   </div>
+                   <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+                    </div>
+                   </div>
+               </div>
+               <!-- end of second row -->
+                
+               <!-- third row -->
+               <div class="form-row">
+                   <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Enter password..."
+                            aria-describedby="">
+                        
+                    </div>
+                   </div>
+                   <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="password">Confirm Password</label>
+                            <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm Password">
+                        </div>
+                   </div>
+               </div>
+               <!-- end of third row -->
+            
                 <button type="submit" class="btn btn-outline-success btn-block mb-3">Save User</button>
             </form>
             
         </div>
 
+        <div class="col-md-6">
+            <h3 class="text-center pb-3">List of Admin Users</h3>
+            <% if (typeof users != 'undefined') { %>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Fullname</th>
+                            <th>Username</th>
+                            <th>Action</th>
+                        </tr>
+                        
+                    </thead>
+
+                    <tbody>
+                        <% users.forEach(user => { %>
+                        <tr>
+                            <td scope="row">
+                                <%- `${user.firstname} ${user.lastname}` %> 
+                            </td>
+                            <td >
+                                <%- `${user.username}` %>
+                            </td>
+                            <td>
+                                <a href="/users/e/<%- user._id %>"  class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Edit user"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>
+                                <a href="/users/d/<%- user._id %>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete user"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } %>
+        </div>
 
     </div>
 </div>
+

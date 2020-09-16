@@ -1,9 +1,10 @@
 <div class="container">
-    <div class="row p-md-5">
-        <div class="col-12 mb-md-5">
-            <h4>Welcome to the Admin Daashboard</h4>
+    <!-- Start of row -->
+    <div class="row ">
+        <div class="col-12 my-md-5">
+            <h4>Hi, <span class="username"><%- typeof user != 'undefined' ? user.firstname : "" %></span> Welcome to the Admin Dashboard</h4>
         </div>
-        <div class="col-md-3 p-1">
+        <div class="col-md-3 p-1 mb-2">
             <div class="card p-0 dash-card">
              <a href="/topics" class="link"><div class="card-body text-center">
                 <h4>Topics</h4>
@@ -11,19 +12,20 @@
             </div></a>
             </div>
         </div>
-        <div class="col-md-3 p-1">
+        <div class="col-md-3 p-1 mb-2">
             <div class="card p-0 dash-card">
                 <a href="/subtopics" class="link">
                     <div class="card-body text-center">
                         <h4>Sub Topics</h4>
-                        <i class="fa fa-book fa-lg" aria-hidden="true"></i>
+                        <i class="fa fa-address-book fa-lg" aria-hidden="true"></i>
+                        <!-- <i class="fa fa-book fa-lg" aria-hidden="true"></i> -->
                     </div>
                 </a>
             </div>
         </div>
-        <div class="col-md-3 p-1">
+        <div class="col-md-3 p-1 mb-2">
             <div class="card p-0 dash-card">
-                <a href="" class="link">
+                <a href="/questions" class="link">
                     <div class="card-body text-center">
                         <h4>Questions</h4>
                         <i class="fa fa-question-circle fa-lg" aria-hidden="true"></i>
@@ -32,17 +34,31 @@
             </div>
         </div>
        
-        <div class="col-md-3 p-1">
+        <div class="col-md-3 p-1 mb-2">
             <div class="card p-0 dash-card">
-                <a href="" class="link">
+                <a href="/employees" class="link">
                     <div class="card-body text-center">
                         <h4>Employees</h4>
-                       <i class="fa fa-male fa-lg" aria-hidden="true"></i>
+                        <i class="fa fa-users fa-lg" aria-hidden="true"></i>
                     </div>
                 </a>
             </div>
         </div>
      
 
+    </div>
+    <!-- end of row -->
+
+    <div class="row mt-3">
+        <div class="col-md-3 p-1 mb-2">
+            <div class="card p-0 dash-card">
+                <a href="/users" class="link">
+                    <div class="card-body text-center">
+                        <h4>Admin Users</h4>
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 </div>

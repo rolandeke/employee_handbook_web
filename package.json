@@ -20,6 +20,7 @@
     "express-flash": "0.0.2",
     "express-session": "^1.17.1",
     "express-validator": "^6.6.1",
+    "firebase-paginator": "^1.1.2",
     "helmet": "^3.23.1",
     "mongoose": "^5.9.17",
     "nodemon": "^2.0.4",

@@ -1,10 +1,8 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12 text-center">
-            <h1 class="display-4">Sub Topics</h1>
-        </div>
-        <div class="col-md-4">
-            <form id="add-subtopic-form" autocomplete="off">
+<div class="container-fluid ">
+    <div class="row mt-5">
+        <div class="col-md-5 p-3">
+            <h3 class="display-4 text-center my-4">Add new Subtopic</h3>
+            <form id="add-subtopic-form" autocomplete="off" class="form">
                 <div class="form-group">
                     <label for="topicId">Select Topic ID</label>
                     <select class="form-control" name="topicId" id="topicIdDropDown" required>
@@ -21,19 +19,16 @@
                     <label for="description">Description</label>
                     <textarea class="form-control" required name="description" id="description" rows="10" cols="5"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" id="saveTopic">Save SubTopic</button>
+                <input type="hidden" name="subTopicId">
+                <button type="submit" class="btn btn-info btn-block" id="saveSubTopic">Save</button>
             </form>
         </div>
 
-        <div class="col-md-8 p-md-3">
-            <!-- <table class="table" id="SubTopicsTable">
-                <thead>
-                    <th>Topic</th>
-                    <th>Description</th>
-                    <th>Action</th>
-                </thead>
-            </table> -->
-            <div id="accordianId" role="tablist" aria-multiselectable="true">
+        <div class="col-md-7 p-3">
+            
+                <h3 class="display-4 text-center my-4">List of Subtopics</h3>
+         
+            <div id="accordianId" class="accordion subtopic">
               
             </div>
         </div>

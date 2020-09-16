@@ -29,12 +29,21 @@ router.get("/subtopics", ensureAuthenticated, async (req, res) => {
       res.render("admin/subtopic", {user:req.user});
 });
 
+router.get('/employees', ensureAuthenticated,(req,res) => {
+  res.render("admin/employees", { user: req.user });
+})
+
 router.get("/login", (req, res) => {
   res.render("login")
 })
 
 router.get('/users',ensureAuthenticated, (req,res) => {
-  res.render('users', {user:req.user})
+  user.find().then((users) =>{
+    res.render("users", { user: req.user,users });
+  }).catch((error) => {
+
+  })
+  
 })
 router.post(
   "/users",
@@ -102,10 +111,12 @@ router.post(
         const hashedPass = await bcrypt.hash(newUser.password, salt)
         newUser.password = hashedPass;
         newUser.save().then((doc) => {
-          console.log("User saved")
-          console.log(doc);
+          req.flash("success", "Successfully Added User");
+          res.redirect('/users')
         }).catch((err) => {
-          
+          console.log(err);
+           req.flash("err_msg", "Error adding user try again.");
+           res.redirect("/users");
         })
       }
     } catch (error) {
@@ -113,6 +124,18 @@ router.post(
     }
   
   });
+
+  //delete user
+router.get('/users/d/:id', (req, res) => {
+    const {id} = req.params;
+    user.findByIdAndDelete(id).then(doc => {
+       req.flash("success", "User deleted successfully");
+       res.redirect("/users");
+    })
+    console.log(id);
+})
+
+
 router.post(
   "/login",
   [
