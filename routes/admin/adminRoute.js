@@ -33,6 +33,10 @@ router.get('/employees', ensureAuthenticated,(req,res) => {
   res.render("admin/employees", { user: req.user });
 })
 
+router.get("/questions", ensureAuthenticated, (req, res) => {
+  res.render("admin/questions", { user: req.user });
+});
+
 router.get("/login", (req, res) => {
   res.render("login")
 })
