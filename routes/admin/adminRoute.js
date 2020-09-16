@@ -169,7 +169,7 @@ router.post(
       if (user) {
         res.render("admin/dashboard",{user});
       } else{
-        
+        res.redirect('/login')
       }
     }
   }
