@@ -176,7 +176,7 @@ if (document.body.contains(subTopicForm)) {
         .update({
           title: subTopicForm.title.value.trim(),
           description: subTopicForm.description.value.trim(),
-          topicId: subTopicForm.topicId.value.triupdatedm(),
+          topicId: subTopicForm.topicId.value.trim(),
         })
         .then(() => {
           swal("Write something here:", {
