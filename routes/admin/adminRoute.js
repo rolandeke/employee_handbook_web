@@ -182,6 +182,6 @@ router.get('/reset', (req,res) => {
 router.get('/logout', (req,res) => {
   req.logOut();
   req.flash("success", "Successfully Logged Out");
-  res.redirect("/login");
+  res.redirect("/");
 })
 module.exports = router;

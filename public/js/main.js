@@ -42,8 +42,27 @@ function renederTopics(doc) {
   //deleting data from topics collection
   delButton.addEventListener("click", (event) => {
     event.stopPropagation();
-    let id = event.target.parentElement.getAttribute("data-id");
-    db.collection("topics").doc(id).delete(); 
+    swal({
+      title: "Confirm Delete",
+      text:
+        "Once deleted, you will not be able to recover.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        let id = event.target.parentElement.getAttribute("data-id");
+        db.collection("topics").doc(id).delete().then(() => {
+           swal("File has been deleted!", {
+             icon: "success",
+           });
+        }) 
+       
+      } else {
+      }
+    });
+    return
+    
   });
 
   //updating the data
@@ -85,12 +104,19 @@ if (document.body.contains(form)) {
         title: form.title.value.trim(),
         description: form.description.value.trim(),
       }).then(() => {
-        location.reload();
-        form.title.value = "";
-        form.description.value = "";
-        form.title.focus();
-        addTopicbtn.innerHTML = "Add Topic"
-        alert("Document Updated Successfully")
+        swal("Write something here:", {
+          title: "Updated Successfully!",
+          text: "Document has been updated successfully",
+          icon: "success",
+          button: "Thank you",
+        }).then(() => {
+           location.reload();
+           form.title.value = "";
+           form.description.value = "";
+           form.title.focus();
+           addTopicbtn.innerHTML = "Add Topic";
+        });
+        
       })
     }
   

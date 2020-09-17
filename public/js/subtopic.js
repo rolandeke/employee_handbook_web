@@ -86,8 +86,26 @@ function renderSubTopics(doc) {
   //deleting data from topics collection
   delButton.addEventListener("click", (event) => {
     event.stopPropagation();
-    let id = event.target.getAttribute("data-id");
-    db.collection("sub_topics").doc(id).delete();
+     swal({
+       title: "Confirm Delete",
+       text: "Once deleted, you will not be able to recover.",
+       icon: "warning",
+       buttons: true,
+       dangerMode: true,
+     }).then((willDelete) => {
+       if (willDelete) {
+         let id = event.target.getAttribute("data-id");
+         db.collection("sub_topics").doc(id).delete().then((data) => {
+           console.log(data);
+            swal("File has been deleted!", {
+              icon: "success",
+            });
+         })
+       } else {
+       }
+     });
+     return;
+   
   });
 
   editButton.addEventListener("click", (e) => {
@@ -139,9 +157,17 @@ if (document.body.contains(subTopicForm)) {
           dateAdded: sd.getTime(),
         })
         .then(() => {
-          location.reload();
-          clearInput();
-          alert("Document Saved");
+            swal( {
+              title: "Saved Successfully!",
+              text: "Document has been saved successfully",
+              icon: "success",
+              button: "Thank you",
+            }).then(() => {
+               location.reload();
+               clearInput();
+               
+            });
+         
         });
     } else {
       let id = subTopicForm.subTopicId.value.trim();
@@ -150,13 +176,19 @@ if (document.body.contains(subTopicForm)) {
         .update({
           title: subTopicForm.title.value.trim(),
           description: subTopicForm.description.value.trim(),
-          topicId: subTopicForm.topicId.value.trim(),
+          topicId: subTopicForm.topicId.value.triupdatedm(),
         })
         .then(() => {
-          location.reload();
-          clearInput();
-          btnSaveSubTopic.innerHTML = "Save";
-          alert("Document Updated");
+          swal("Write something here:", {
+            title: "Updated Successfully!",
+            text: "Document has been updated successfully",
+            icon: "success",
+            button: "Thank you",
+          }).then(() => {
+            location.reload();
+            clearInput();
+            btnSaveSubTopic.innerHTML = "Save";
+          });
         });
     }
   });

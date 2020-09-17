@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row mt-5">
         <div class="col-12 text-center">
             <h1 class="display-4">Topics</h1>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <form id="add-topic-form">
                 <div class="form-group">
                     <label for="title">Topic Title</label>
@@ -12,7 +12,7 @@
                 </div>
                 <div class="form-group" id="add-topic-form" >
                     <label for="description">Description</label>
-                    <textarea name="description" required id="description" cols="30" rows="5" class="form-control"></textarea>
+                    <textarea name="description" required id="description" cols="30" rows="10" class="form-control"></textarea>
                 </div>
                 <input type="hidden" name="topicId">
                 <div class="form-group">
@@ -21,7 +21,7 @@
             </form>
         </div>
     
-        <div class="col-md-8 p-md-3">
+        <div class="col-md-7 p-md-5">
             <table class="table" id="topicsTable">
                 <thead>
                     <th>Topic</th>
