@@ -29,18 +29,22 @@ router.get("/subtopics", ensureAuthenticated, async (req, res) => {
       res.render("admin/subtopic", {user:req.user});
 });
 
+//Get all employees
 router.get('/employees', ensureAuthenticated,(req,res) => {
   res.render("admin/employees", { user: req.user });
 })
 
+//Get questions page
 router.get("/questions", ensureAuthenticated, (req, res) => {
   res.render("admin/questions", { user: req.user });
 });
 
+//Get login screen
 router.get("/login", (req, res) => {
   res.render("login")
 })
 
+//Get all users 
 router.get('/users',ensureAuthenticated, (req,res) => {
   user.find().then((users) =>{
     res.render("users", { user: req.user,users });
@@ -49,6 +53,7 @@ router.get('/users',ensureAuthenticated, (req,res) => {
   })
   
 })
+
 router.post(
   "/users",
   [
@@ -129,7 +134,7 @@ router.post(
   
   });
 
-  //delete user
+//delete user
 router.get('/users/d/:id', (req, res) => {
     const {id} = req.params;
     user.findByIdAndDelete(id).then(doc => {

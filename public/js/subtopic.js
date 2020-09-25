@@ -96,7 +96,6 @@ function renderSubTopics(doc) {
        if (willDelete) {
          let id = event.target.getAttribute("data-id");
          db.collection("sub_topics").doc(id).delete().then((data) => {
-           console.log(data);
             swal("File has been deleted!", {
               icon: "success",
             });

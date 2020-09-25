@@ -1,5 +1,53 @@
 <div class="container">
     <div class="row mt-5">
+        <div class="col-sm-12">
+            <div class="modal fade" id="updateAnswerModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="updateModalLabel">Answer Question</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="updateAnswer-form">
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="senderName" class="col-form-label">Sender Name:</label>
+                                            <input type="text" name="senderName" id="senderName" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="senderEmail" class="col-form-label">Sender Email:</label>
+                                            <input type="text" name="senderEmail" id="senderEmail" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="questionText" class="col-form-label">Question:</label>
+                                    <textarea class="form-control" name="questionText" id="question-text" rows="3" disabled></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="question-answer" class="col-form-label">Answer:</label>
+                                    <textarea class="form-control" id="questionAnswer" name="question-answer" rows="5"></textarea>
+                                </div>
+                                <input type="hidden" name="questionId">
+                                <button type="submit" class="btn btn-info btn-block">Submit Answer</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- END OF MODAL COLUMN -->
         <div class="col-md-12">
             <h5 class="display-4 mb-3 text-center">Questions from Employees</h5>
             <table class="table table-striped table-bordered">

@@ -104,7 +104,7 @@ if (document.body.contains(form)) {
         title: form.title.value.trim(),
         description: form.description.value.trim(),
       }).then(() => {
-        swal("Write something here:", {
+        swal({
           title: "Updated Successfully!",
           text: "Document has been updated successfully",
           icon: "success",

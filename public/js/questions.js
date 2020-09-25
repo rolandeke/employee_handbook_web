@@ -1,5 +1,7 @@
 
+
 const questionList = document.querySelector("#questionList");
+const updateAnsForm = document.querySelector("#updateAnswer-form")
 
 renderQuestions = (doc) => {
      let tr = document.createElement("tr");
@@ -9,51 +11,82 @@ renderQuestions = (doc) => {
      let question = document.createElement("td");
      let ans = document.createElement("td");
      let action = document.createElement("td");
-     let btnAns = document.createElement('button')
      let btnDelete = document.createElement('button')
      let btnUpdate = document.createElement('button')
-
     
-     btnUpdate.setAttribute("class","btn btn-info btn-block")
-     btnDelete.setAttribute('class',"btn btn-danger btn-block")
-     btnAns.setAttribute("class","btn btn-warning btn-block")
-     btnUpdate.setAttribute("data-id", doc.id)
-     btnDelete.setAttribute("data-id", doc.id);
-     btnAns.setAttribute("data-id", doc.id);
      
-     btnAns.innerHTML = "Answer"
-     btnUpdate.innerHTML = "Update Answer"
+     btnUpdate.setAttribute("data-id", doc.id)
+  
+
+     btnDelete.setAttribute('class',"btn btn-danger btn-block")
+     btnDelete.setAttribute("data-id", doc.id);
+
      btnDelete.innerHTML = "Delete"
-
-
 
      name.textContent = doc.data().senderName;
      question.textContent = doc.data().question;
      ans.textContent = doc.data().answer;
    
      if(ans.textContent == ""){
-         action.append(btnAns,btnDelete)
+       btnUpdate.setAttribute("class", "btn btn-warning btn-block");
+        btnUpdate.innerHTML = "Answer"
+         action.append(btnUpdate,btnDelete)
          tr.append(name, question, ans, action);
      }else{
+       btnUpdate.setAttribute("class", "btn btn-info btn-block");
+        btnUpdate.innerHTML = "Update Answer"
          action.append(btnUpdate,btnDelete)
          tr.append(name, question, ans,action);
      }
     
      questionList.appendChild(tr);
 
+     //delete button click event
      btnDelete.addEventListener('click', function (e){
          e.stopPropagation();
-         let id = e.target.getAttribute("data-id")
-         db.collection("questions").doc(id).delete()
+         swal({
+           title: "Confirm Delete",
+           text: "Once deleted, you will not be able to recover.",
+           icon: "warning",
+           buttons: true,
+           dangerMode: true,
+         }).then((willDelete) => {
+           if (willDelete) {
+             let id = e.target.getAttribute("data-id");
+             db.collection("questions")
+               .doc(id)
+               .delete()
+               .then((data) => {
+                 swal("File has been deleted!", {
+                   icon: "success"
+                 });
+               });
+           } else {
+             swal("Delete error! Try again",{
+               icon: "error"
+             })
+           }
+         });
      })
+     
+     //Update button click event
      btnUpdate.addEventListener('click',(e) => {
          e.stopPropagation();
-         alert("Coming Soon");
+         let id = e.target.getAttribute('data-id')
+        $("#updateAnswerModal").modal('show')
+
+        //get the current document with ID
+        db.collection("questions").doc(id).get()
+        .then((quest) => {
+            const {senderName,senderEmail,question,answer } = quest.data()
+            updateAnsForm.senderName.value = senderName;
+            updateAnsForm.senderEmail.value =senderEmail;
+            updateAnsForm.questionText.value = question;;
+            updateAnsForm.questionAnswer.value = answer;
+            updateAnsForm.questionId.value = quest.id;
+        })
      })
-     btnAns.addEventListener('click',(e) => {
-         e.stopPropagation()
-         alert("Coming Soon");
-     })
+     
 }
 
 db.collection("questions")
@@ -74,3 +107,20 @@ db.collection("questions")
       }
     });
   });
+
+updateAnsForm.addEventListener('submit', (e) => {
+   e.preventDefault();
+   let id = updateAnsForm.questionId.value;
+   db.collection("questions").doc(id).update({
+      answer:updateAnsForm.questionAnswer.value
+   }).then(() => {
+     swal({
+       title: "Success",
+       text: "Question has been answered",
+       icon: "success",
+       button: "Thank you",
+     }).then(() => {
+       location.reload();
+     });
+   })
+});
