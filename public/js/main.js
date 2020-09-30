@@ -1,6 +1,7 @@
 const topicsTable = document.querySelector("#topicsTable");
-const form = document.querySelector("#add-topic-form");
+const addTopicForm = document.querySelector("#add-topic-form");
 const addTopicbtn = document.querySelector("#addTopicbtn");
+const addUserForm = document.querySelector("#addUserForm");
 var docId;
 var date = new Date();
 
@@ -71,38 +72,38 @@ function renederTopics(doc) {
     let id = e.target.getAttribute("data-id");
     db.collection("topics").doc(id).get()
     .then(function (doc){
-      form.title.value = doc.data().title;
-      form.description.value = doc.data().description;
-      form.topicId.value = doc.id
+      addTopicForm.title.value = doc.data().title;
+      addTopicForm.description.value = doc.data().description;
+      addTopicForm.topicId.value = doc.id
       addTopicbtn.innerHTML = "Update Topic"
     })
   });
 }
 
 
-if (document.body.contains(form)) {
+if (document.body.contains(addTopicForm)) {
   //saving Data to the database
-  form.addEventListener("submit", (e) => {
+  addTopicForm.addEventListener("submit", (e) => {
     e.preventDefault();
     if(addTopicbtn.innerHTML == "Add Topic"){
        db.collection("topics")
          .add({
-           title: form.title.value.trim(),
-           description: form.description.value.trim(),
+           title: addTopicForm.title.value.trim(),
+           description: addTopicForm.description.value.trim(),
            topicId: "topic" + date.getTime(),
            dateAdded: date.getTime(),
          })
          .then(function () {
            location.reload();
-           form.title.value = "";
-           form.description.value = "";
-           form.title.focus();
+           addTopicForm.title.value = "";
+           addTopicForm.description.value = "";
+           addTopicForm.title.focus();
          });
     }else{
-      let id = form.topicId.value;
+      let id = addTopicForm.topicId.value;
       db.collection("topics").doc(id).update({
-        title: form.title.value.trim(),
-        description: form.description.value.trim(),
+        title: addTopicForm.title.value.trim(),
+        description: addTopicForm.description.value.trim(),
       }).then(() => {
         swal({
           title: "Updated Successfully!",
@@ -111,9 +112,9 @@ if (document.body.contains(form)) {
           button: "Thank you",
         }).then(() => {
            location.reload();
-           form.title.value = "";
-           form.description.value = "";
-           form.title.focus();
+           addTopicForm.title.value = "";
+           addTopicForm.description.value = "";
+           addTopicForm.title.focus();
            addTopicbtn.innerHTML = "Add Topic";
         });
         
@@ -140,3 +141,29 @@ db.collection("topics")
       }
     });
   });
+
+if(document.body.contains(addUserForm)){
+  addUserForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let firstname = addUserForm.firstname.value.trim();
+    let lastname = addUserForm.lastname.value.trim();
+    let email = addUserForm.email.value.trim();
+    let username = addUserForm.username.value.trim();
+    let password = addUserForm.password.value.trim();
+    let password2 = addUserForm.password2.value.trim();
+    const user = {
+      firstname,
+      lastname,email,username,password,password2
+    }
+    $.ajax({
+      type: "POST",
+      data: user,
+      contentType: "application/json",
+      url: "/users",
+      success: function (data) {
+        console.log("success");
+        
+      },
+    });
+  })
+}

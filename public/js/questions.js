@@ -61,11 +61,7 @@ renderQuestions = (doc) => {
                    icon: "success"
                  });
                });
-           } else {
-             swal("Delete error! Try again",{
-               icon: "error"
-             })
-           }
+           } 
          });
      })
      
@@ -108,19 +104,24 @@ db.collection("questions")
     });
   });
 
-updateAnsForm.addEventListener('submit', (e) => {
-   e.preventDefault();
-   let id = updateAnsForm.questionId.value;
-   db.collection("questions").doc(id).update({
-      answer:updateAnsForm.questionAnswer.value
-   }).then(() => {
-     swal({
-       title: "Success",
-       text: "Question has been answered",
-       icon: "success",
-       button: "Thank you",
-     }).then(() => {
-       location.reload();
-     });
-   })
-});
+if(document.body.contains(updateAnsForm)){
+  updateAnsForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let id = updateAnsForm.questionId.value;
+    db.collection("questions")
+      .doc(id)
+      .update({
+        answer: updateAnsForm.questionAnswer.value,
+      })
+      .then(() => {
+        swal({
+          title: "Success",
+          text: "Question has been answered",
+          icon: "success",
+          button: "Thank you",
+        }).then(() => {
+          location.reload();
+        });
+      });
+  });
+}

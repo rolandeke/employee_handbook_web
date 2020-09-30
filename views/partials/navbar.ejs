@@ -6,11 +6,8 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
+    <% if (typeof user != 'undefined') { %>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-
-            <% if (typeof user != 'undefined') { %>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
@@ -30,10 +27,8 @@
                     </li>
                 
                 </ul>
-            <% } %>
-
-
         </div>
+        <% } %>
     </div>
 
 </nav>
