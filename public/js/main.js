@@ -167,3 +167,7 @@ if(document.body.contains(addUserForm)){
     });
   })
 }
+
+$(".carousel").carousel({
+  interval: 2000,
+});

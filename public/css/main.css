@@ -10,18 +10,18 @@ body{
 
 
 .hero{
-    height:93vh !important;
+    height:90vh !important;
     
 }
 .hero .btn{
-  width: 20%;
-  font-size: 2rem;
+  width: 30%;
+  font-size: 1rem;
   margin-top: 30px!important;
   font-weight: 600;
   letter-spacing: 2px;
 }
 .hero .carousel-caption{
-  margin-bottom: 200px!important;
+  margin-bottom: 150px!important;
 
 }
 
